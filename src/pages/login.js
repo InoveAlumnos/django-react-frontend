@@ -53,17 +53,6 @@ const LoginForm = (props) => {
     
   };
 
-  useEffect(() => {
-    const item = JSON.parse(sessionStorage.getItem('userDataEcommerce'));
-
-    if(item) {
-        setAuthHook(true);
-        userDataHook(item);
-        navigate("/home");
-    }
-
-  }, [])
-
   return (
     <div className={styles.Container}>
       <div className={styles.formContainer}>

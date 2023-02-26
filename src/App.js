@@ -1,6 +1,6 @@
 import "./App.css";
 import Navbar from "./components/navbar/navbar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 // Importamos React Router:
 import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 
@@ -13,7 +13,7 @@ import SignUpForm from "./pages/signUp";
 import Footer from "./components/footer/footer";
 
 function App() {
-  const [auth, setAuth] = useState(false);
+  const [auth, setAuth] = useState(true);
   const [userData, setUserData] = useState({
     firstName: "firstName",
     lastName: "lastName",
@@ -28,6 +28,19 @@ function App() {
     key: "",
   });
 
+  useEffect(() => {
+    const item = JSON.parse(sessionStorage.getItem('userDataEcommerce'));
+
+    if(item) {
+        setUserData(item);
+        setAuth(true);
+    } else {
+      setAuth(false);
+    }
+
+  }, [])
+
+
   return (
     <div className="App">
       <HashRouter>
@@ -35,19 +48,21 @@ function App() {
           <Route
             path="/"
             component={ComicCards}
-            element={<ComicCards 
-              setAuthHook={(auth) => setAuth(auth)}
-              userDataHook={(data) => setUserData(data)}
-              />
+            element={
+              auth ? 
+              <ComicCards auth={auth} />
+              :
+              <Navigate to="/login" />
             }
           ></Route>
           <Route
             path="/home"
             component={ComicCards}
-            element={<ComicCards 
-              setAuthHook={(auth) => setAuth(auth)}
-              userDataHook={(data) => setUserData(data)}
-              />
+            element={
+              auth ? 
+              <ComicCards auth={auth} />
+              :
+              <Navigate to="/login" />
             }
           ></Route>
           <Route

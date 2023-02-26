@@ -8,26 +8,16 @@ import magnifying_glass_logo from "../../assets/img/magnifying_glass_logo.png"
 import {ComicsGetAPI} from "../../api/ComicsGetAPI"
 
 const ComicCards = (props) => {
-    const { setAuthHook, userDataHook} = props;
+    const { auth } = props;
     const [comics, SetComics] = useState("CARGANDO...");
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        const item = JSON.parse(sessionStorage.getItem('userDataEcommerce'));
-
-        if(item) {
-            setAuthHook(true);
-            userDataHook(item);
-            ComicsGetAPI.getAll().then((data) => {
-                console.log(data);
-                SetComics(data);
-            });
-        }
-        else {
-            navigate("/user");
-        }
-
+        ComicsGetAPI.getAll().then((data) => {
+            console.log(data);
+            SetComics(data);
+        });
     }, [])
 
     return (

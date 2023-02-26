@@ -6,7 +6,7 @@ const Logout = (props) => {
 
   const handler = () => {
     sessionStorage.removeItem("userDataEcommerce");
-    //setAuthHook(false);   
+    //setAuthHook(false);
     window.location = "/login"
   }
 
