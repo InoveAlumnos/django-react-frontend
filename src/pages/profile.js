@@ -65,12 +65,12 @@ const Profile = (props) => {
           {FormInput("Last name", "text", userData.lastName, 'lastName')}
           {RequiredFormInput("**Username", "text", userData.username, 'username')}
           {RequiredFormInput("**Email", "email", userData.email, 'email')}
-          {PhoneInput("**Phone", userData.phone, 'phone')}
+          {/* {PhoneInput("**Phone", userData.phone, 'phone')}
           <p>[Delivery address]</p>
           {FormInput("Country:", "text", userData.country, 'country')}
           {FormInput("Province - State:", "text", userData.provinceState, 'provinceState')}
           {FormInput("City:", "text", userData.city, 'city')}
-          {FormInput("Postal Code:", "text", userData.postalCode, 'postalCode')}
+          {FormInput("Postal Code:", "text", userData.postalCode, 'postalCode')} */}
           <input
             className={styles.submitButton}
             type="submit"

@@ -15,15 +15,16 @@ import Footer from "./components/footer/footer";
 function App() {
   const [auth, setAuth] = useState(true);
   const [userData, setUserData] = useState({
+    id: null,
     firstName: "firstName",
     lastName: "lastName",
     username: "yourUsername",
     email: "youremail@inove.com.ar",
-    phone: "+54-9-11-1234-5678",
-    country: "yourCountry",
-    provinceState: "yourState",
-    city: "yourCity",
-    postalCode: "yourPostalCode",
+    // phone: "+54-9-11-1234-5678",
+    // country: "yourCountry",
+    // provinceState: "yourState",
+    // city: "yourCity",
+    // postalCode: "yourPostalCode",
     password: "12345",
     key: "",
   });
