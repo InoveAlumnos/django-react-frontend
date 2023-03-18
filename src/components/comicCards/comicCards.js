@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react"
-import { useNavigate } from "react-router-dom";
 
 import styles from "./comicCards.module.css"
 import { exampleResponse } from "./responseExample.js"
@@ -11,12 +10,10 @@ const ComicCards = (props) => {
     const { auth } = props;
     const [comics, SetComics] = useState("CARGANDO...");
 
-    const navigate = useNavigate();
-
     useEffect(() => {
         ComicsGetAPI.getAll().then((data) => {
             console.log(data);
-            SetComics(data);
+            SetComics(data["results"]);
         });
     }, [])
 

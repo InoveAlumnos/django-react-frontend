@@ -1,6 +1,8 @@
 import styles from "./profile.module.css";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+
+import {UserAPI} from "../api/UserAPI"
+
+import toast from 'react-hot-toast';
 
 import {
   FormInput,
@@ -9,9 +11,6 @@ import {
 } from "../components/form_inputs/formInputs.js";
 
 const Profile = (props) => {
-  // Este es un hook de React Router que nos ayuda a redireccionar luego del submit.
-  let navigate = useNavigate();
-
   // Desestructuramos los props:
   const { userData, userDataHook } = props;
 
@@ -19,17 +18,28 @@ const Profile = (props) => {
   const handleProfileSubmit = (event) => {
     event.preventDefault();
     const e = event.target;
-    userData.firstName = e.firstName.value;
-    userData.lastName = e.lastName.value;
-    userData.username = e.username.value;
-    userData.email = e.email.value;
-    // userData.phone = e.phone.value;
-    // userData.country = e.country.value;
-    // userData.provinceState = e.provinceState.value;
-    // userData.city = e.city.value;
-    // userData.postalCode = e.postalCode.value;
-    userDataHook(userData);
-    console.table(userData);
+
+    UserAPI.put(
+      userData.id,
+      e.first_name.value, 
+      e.last_name.value,
+      e.email.value,
+      userData.username,
+      userData.password,
+    ).then( (data) => {
+      userData.first_name = e.first_name.value;
+      userData.last_name = e.last_name.value;      
+      userData.email = e.email.value;
+
+      userDataHook(userData);
+      sessionStorage.setItem('userDataEcommerce', JSON.stringify(userData))
+      console.table(userData);
+      toast.success("🥳 ¡Datos actualizados!");
+    }).catch( error => {
+      console.log(error);
+      toast.error(JSON.stringify(error.response.data));
+    });
+
   };
 
   // Función que maneja el submit del formulario, actualiza el objeto global userData.
@@ -38,16 +48,26 @@ const Profile = (props) => {
     const e = event.target
     if (e.newPassword.value !== e.repeatNewPassword.value) {
       // Previene que las contraseñas ingresadas sean distinas
-      alert("😬 New passwords doesn't match");
-    } else if (e.actualPassword.value === e.newPassword.value) {
-      // Previene que las contraseñas ingresadas sean iguales a la original
-      alert("😛 The New password must be diferent than the old one");
+      toast.error("😬 Las contraseñas no coinciden");
+
     } else {
-      // Actualiza el objeto global userData
-      userData.password = e.newPassword.value;
-      userDataHook(userData);
-      alert("🥳 Password Updated !!");
-      navigate("/home", { replace: true });
+      UserAPI.put(
+        userData.id,
+        userData.first_name, 
+        userData.last_name,
+        userData.email,
+        userData.username,
+        e.newPassword.value,
+      ).then( (data) => {
+        userData.password = e.newPassword.value;
+        userDataHook(userData);
+        sessionStorage.setItem('userDataEcommerce', JSON.stringify(userData))
+        console.table(userData);
+        toast.success("🥳 ¡Contraseña actualizada!");
+      }).catch( error => {
+        console.log(error);
+        toast.error(JSON.stringify(error.response.data));
+      });
     }
   };
 
@@ -61,9 +81,9 @@ const Profile = (props) => {
           className={[styles.userProfileForm, styles.formCommon].join(" ")}
           onSubmit={handleProfileSubmit}
         >
-          {FormInput("First name", "text", userData.first_name, 'firstName')}
-          {FormInput("Last name", "text", userData.last_name, 'lastName')}
-          {RequiredFormInput("**Username", "text", userData.username, 'username')}
+          {FormInput("First name", "text", userData.first_name, 'first_name')}
+          {FormInput("Last name", "text", userData.last_name, 'last_name')}
+          {/* {RequiredFormInput("**Username", "text", userData.username, 'username')} */}
           {RequiredFormInput("**Email", "email", userData.email, 'email')}
           {/* {PhoneInput("**Phone", userData.phone, 'phone')}
           <p>[Delivery address]</p>
@@ -86,7 +106,7 @@ const Profile = (props) => {
           className={[styles.passwordForm, styles.formCommon].join(" ")}
           onSubmit={handlePasswordSubmit}
         >
-          {RequiredFormInput("**Actual Password", "password", "","actualPassword")}
+          {/* {RequiredFormInput("**Actual Password", "password", "","actualPassword")} */}
           {RequiredFormInput("**New Password", "password", "", "newPassword" )}
           {RequiredFormInput("**Repeat new password", "password", "", "repeatNewPassword")}
           <input

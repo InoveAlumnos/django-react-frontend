@@ -12,12 +12,14 @@ import Logout from "./pages/logout";
 import SignUpForm from "./pages/signUp";
 import Footer from "./components/footer/footer";
 
+import { Toaster } from "react-hot-toast"
+
 function App() {
   const [auth, setAuth] = useState(true);
   const [userData, setUserData] = useState({
     id: null,
-    firstName: "firstName",
-    lastName: "lastName",
+    first_name: "first_name",
+    last_name: "last_name",
     username: "yourUsername",
     email: "youremail@inove.com.ar",
     // phone: "+54-9-11-1234-5678",
@@ -130,6 +132,10 @@ function App() {
         <div className="footer-container">
           <Footer />
         </div>
+        <Toaster 
+        containerStyle={{
+          top: '90px'
+        }} />
       </HashRouter>
     </div>
   );
