@@ -10,7 +10,7 @@ export const api = axios.create({
 const item = JSON.parse(sessionStorage.getItem('userDataEcommerce'));
 
 api.interceptors.request.use(function (config) {
-  const token = item? item.key : ""
+  const token = item? item.token : ""
   config.headers = {
     "Authorization": `Token ${token}`
   }

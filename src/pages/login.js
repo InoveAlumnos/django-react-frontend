@@ -1,8 +1,9 @@
 import styles from "./login.module.css";
-import { useState, useEffect } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import {LoginAPI} from "../api/LoginAPI"
+
+import toast from 'react-hot-toast';
 
 const label = (labelName, type, value, name) => {
   return (
@@ -23,8 +24,6 @@ const LoginForm = (props) => {
   const { setAuthHook, userData, userDataHook } = props;
   const { username, password } = userData;
 
-  const navigate = useNavigate();
-
   // Establecemos la función que guarda los cambios en los datos globales:
   const handleSubmit = (event) => {
     // Suspendemos el evento para evitar submits erroneos
@@ -33,7 +32,7 @@ const LoginForm = (props) => {
     const username = event.target.username.value;
     const password = event.target.password.value;
 
-    LoginAPI.post(username, password)    
+    LoginAPI.post(username, password)
     .then((data) => {
       setAuthHook(true);
       const { 
@@ -44,14 +43,19 @@ const LoginForm = (props) => {
         date_joined,
         ...userDataReceived } = { ...data.user }
 
-      userDataReceived.key = data.key
+      userDataReceived.token = data.token;
+      userDataReceived.password = password;
       
       // Actualizamos userData para el contexto global
       userDataHook(userDataReceived);
       
-      // console.table(userData);
+      // console.table(data);
+      // console.table(userDataReceived);
       sessionStorage.setItem('userDataEcommerce', JSON.stringify(userDataReceived))
       window.location = "/";
+    }).catch( error => {
+      console.log(error);
+      toast.error("Credenciales invalidas");
     });
 
     

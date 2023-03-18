@@ -4,7 +4,7 @@ const FormInput = (labelName, type, value, name) => {
     return (
         <div>
             <label>{labelName}
-                <div>
+                <div key={value} >
                     <input className={styles.inputBox} type={type} defaultValue={value} name={name} />
                 </div>
             </label>
@@ -17,7 +17,7 @@ const RequiredFormInput = (labelName, type, value, name) => {
     return (
         <div>
             <label>{labelName}
-                <div>
+                <div key={value} >
                     <input className={styles.inputBox} type={type} required defaultValue={value} name={name} />
                 </div>
             </label>
