@@ -32,21 +32,25 @@ const LoginForm = (props) => {
     // Seteamos como autorizado al usuario
     const username = event.target.username.value;
     const password = event.target.password.value;
-    LoginAPI.post(username, password).then((data) => {
-      console.log(data);
+
+    LoginAPI.post(username, password)    
+    .then((data) => {
       setAuthHook(true);
-      // Actualizamos el objeto userData en este contexto
-      userData.username = event.target.username.value;
-      userData.password = event.target.password.value;
-      userData.email = data.user.email;
-      userData.email = data.user.email;
-      userData.firstName = data.user.first_name;
-      userData.lastName = data.user.last_name;
-      userData.key = data.key;
+      const { 
+        last_login,
+        is_superuser,
+        is_staff,
+        is_active,
+        date_joined,
+        ...userDataReceived } = { ...data.user }
+
+      userDataReceived.key = data.key
+      
       // Actualizamos userData para el contexto global
-      userDataHook(userData);
+      userDataHook(userDataReceived);
+      
       // console.table(userData);
-      sessionStorage.setItem('userDataEcommerce', JSON.stringify(userData))
+      sessionStorage.setItem('userDataEcommerce', JSON.stringify(userDataReceived))
       window.location = "/";
     });
 

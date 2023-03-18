@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import {
   FormInput,
-  PhoneInput,
+  //PhoneInput,
   RequiredFormInput,
 } from "../components/form_inputs/formInputs.js";
 
@@ -18,16 +18,16 @@ const Profile = (props) => {
   // Función que maneja el submit del formulario, actualiza el objeto global userData.
   const handleProfileSubmit = (event) => {
     event.preventDefault();
-    const e = event.target
+    const e = event.target;
     userData.firstName = e.firstName.value;
     userData.lastName = e.lastName.value;
     userData.username = e.username.value;
     userData.email = e.email.value;
-    userData.phone = e.phone.value;
-    userData.country = e.country.value;
-    userData.provinceState = e.provinceState.value;
-    userData.city = e.city.value;
-    userData.postalCode = e.postalCode.value;
+    // userData.phone = e.phone.value;
+    // userData.country = e.country.value;
+    // userData.provinceState = e.provinceState.value;
+    // userData.city = e.city.value;
+    // userData.postalCode = e.postalCode.value;
     userDataHook(userData);
     console.table(userData);
   };
@@ -61,16 +61,16 @@ const Profile = (props) => {
           className={[styles.userProfileForm, styles.formCommon].join(" ")}
           onSubmit={handleProfileSubmit}
         >
-          {FormInput("First name", "text", userData.firstName, 'firstName')}
-          {FormInput("Last name", "text", userData.lastName, 'lastName')}
+          {FormInput("First name", "text", userData.first_name, 'firstName')}
+          {FormInput("Last name", "text", userData.last_name, 'lastName')}
           {RequiredFormInput("**Username", "text", userData.username, 'username')}
           {RequiredFormInput("**Email", "email", userData.email, 'email')}
-          {PhoneInput("**Phone", userData.phone, 'phone')}
+          {/* {PhoneInput("**Phone", userData.phone, 'phone')}
           <p>[Delivery address]</p>
           {FormInput("Country:", "text", userData.country, 'country')}
           {FormInput("Province - State:", "text", userData.provinceState, 'provinceState')}
           {FormInput("City:", "text", userData.city, 'city')}
-          {FormInput("Postal Code:", "text", userData.postalCode, 'postalCode')}
+          {FormInput("Postal Code:", "text", userData.postalCode, 'postalCode')} */}
           <input
             className={styles.submitButton}
             type="submit"
@@ -86,9 +86,9 @@ const Profile = (props) => {
           className={[styles.passwordForm, styles.formCommon].join(" ")}
           onSubmit={handlePasswordSubmit}
         >
-          {RequiredFormInput("**Actual Password", "text", userData.password,"actualPassword")}
-          {RequiredFormInput("**New Password", "password", "**", "newPassword" )}
-          {RequiredFormInput("**Repeat new password", "password", "***", "repeatNewPassword")}
+          {RequiredFormInput("**Actual Password", "password", "","actualPassword")}
+          {RequiredFormInput("**New Password", "password", "", "newPassword" )}
+          {RequiredFormInput("**Repeat new password", "password", "", "repeatNewPassword")}
           <input
             className={styles.passwordSubmitButton}
             type="submit"
