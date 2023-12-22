@@ -103,22 +103,6 @@ function App() {
               }
             ></Route>
             <Route
-              path="/cart"
-              component={Cart}
-              element={
-                auth ? (
-                  <Navigate to="/cart" />
-                ) : (
-                  <LoginForm
-                    auth={auth}
-                    setAuthHook={(auth) => setAuth(auth)}
-                    userData={userData}
-                    userDataHook={(data) => setUserData(data)}
-                  />
-                )
-              }
-            ></Route>
-            <Route
               path="/logout"
               component={Logout}
               element={
@@ -141,8 +125,18 @@ function App() {
                     setAuthHook={(auth) => setAuth(auth)}
                     userData={userData}
                     userDataHook={setUserData}
-                  />
-                )
+                    />
+                    )
+                  }
+            ></Route>
+            <Route
+              path="/cart"
+              component={Cart}
+              element={
+                auth ? 
+                (<Cart />)
+                :
+                (<Navigate to="/login" />)
               }
             ></Route>
           </Routes>

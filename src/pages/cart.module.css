@@ -1,0 +1,155 @@
+/* * {
+    outline: 1px solid red;
+}*/
+
+
+.cartPageContainer {
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    top: 80px;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    padding: 30px; 
+}
+
+
+.cartTable {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 1rem;
+}
+
+.cartTable thead th {
+    overflow: hidden;
+    background-color: rgb(255, 206, 203);
+}
+
+.cartTable thead th:first-child {
+    border-top-left-radius: 10px !important; 
+    border-bottom-left-radius: 10px !important; 
+}
+
+.cartTable thead th:last-child {
+    border-top-right-radius: 10px; 
+    border-bottom-right-radius: 10px; 
+}
+
+.cartTable th {
+    padding: 2rem 1rem 2rem 1rem;
+    margin-top: 2rem;
+}
+
+.cartTable th:not(:first-child){
+    text-align: start;
+    padding-left: 2rem;
+}
+
+.cartTable th:first-child {
+    width: 7%;
+}
+
+
+.cartItem {
+    transition: all .4s ease;
+}
+
+.cartItem td {
+    transition: all .4s ease;
+}
+
+.cartItem:hover td:first-child {
+    background-color: rgb(215, 231, 255);
+    transition: all .4s ease;
+
+    border-top-left-radius: 10px; 
+    border-bottom-left-radius: 10px;
+}
+
+.cartItem:hover td:last-child {
+    background-color: rgb(215, 231, 255);
+    transition: all .4s ease;
+    border-top-right-radius: 10px; 
+    border-bottom-right-radius: 10px; 
+}
+
+.cartItem:hover td:not(:first-child), .cartItem:hover td:not(:last-child) {
+    background-color: rgb(215, 231, 255);
+    transition: all .4s ease;
+}
+
+.cartTable td {
+    line-height: 0;
+}
+
+
+.cartItem td {
+    padding: 0;
+    border: none;
+}
+
+
+
+.cartItem img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+
+.cartItem td:not(:first-child) {
+    padding-left: 2rem;
+}
+
+
+.cartTable tr:last-child td, .cartTable tr:last-child th {
+    border-bottom: none;
+}
+
+.cartTable tbody tr:first-child td {
+    margin-top: 1.5rem;
+}
+
+
+.btnsSection {
+    padding: 2rem;
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.btnsContainer {
+    display: flex;
+    width: 17%;
+    justify-content: space-between;
+}
+
+.buyBtn {
+    background-color: rgb(168, 255, 127);
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+    transition: all .4s ease;
+    
+}
+
+.resetBtn {
+    background-color: rgb(255, 153, 127);
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+    transition: all .4s ease;
+}
+
+.buyBtn:hover {
+    background-color: rgb(124, 253, 64);
+    transition: all .4s ease;
+}
+
+.resetBtn:hover {
+    background-color: rgb(253, 109, 72);
+    transition: all .4s ease;
+}
