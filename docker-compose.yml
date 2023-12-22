@@ -9,6 +9,10 @@ services:
     working_dir: /opt/front
     volumes:
       - .:/opt/front
+
+    ports:
+      - "3000:3000"
+
     
-    network_mode: "host"
+    #network_mode: "host"
 

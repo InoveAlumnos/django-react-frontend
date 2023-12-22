@@ -5,7 +5,7 @@ const controller = new AbortController();
 export const UserAPI = {
   post: async function (first_name, last_name, email, username, password) {
     const response = await api.request({
-      url: `api/modelviewset/users/`,
+      url: `api/users/modelviewset/users/`,
       method: "POST",
       data: {
         first_name: first_name,
@@ -22,7 +22,7 @@ export const UserAPI = {
   },
   put: async function (id, first_name, last_name, email, username, password) {
     const response = await api.request({
-      url: `api/modelviewset/users/${id}/`,
+      url: `api/users/modelviewset/users/${id}/`,
       method: "PUT",
       data: {
         first_name: first_name,

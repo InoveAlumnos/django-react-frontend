@@ -6,7 +6,7 @@ export const ComicsGetAPI = {
   getAll: async function () {
     
     const response = await api.request({
-      url: `comics/get`,
+      url: `api/comics/list/`,
       method: "GET",
       signal: controller.signal
     })

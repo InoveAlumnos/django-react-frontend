@@ -75,6 +75,12 @@
 
 }
 
+.cart {
+    background: linear-gradient(136.35deg, #c3c601 0%, #d5df7c 100%);
+    animation: fadeIn 0.5s ease-in;
+
+}
+
 .logout {
     padding: 15px 5px 15px 5px;
     background: linear-gradient(180deg, #F0161F 0%, #F3B698 100%);
