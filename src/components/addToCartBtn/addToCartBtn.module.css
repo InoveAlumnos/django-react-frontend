@@ -1,0 +1,85 @@
+
+.toCartBtnsContainer {
+    display: flex;
+    position: absolute;
+    z-index: 1;
+    top: 6rem;
+    gap: .5rem;
+}
+
+
+
+.addBtnContainer {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(115, 255, 0);
+    transition: all .5s ease;
+    border-radius: 6px;
+    padding: 5px;
+    height: 2.5rem;
+    width: 4.5rem;
+    top: 2rem;
+}
+
+.addBtn {
+    color: white;
+    transition: all .5s ease;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.addBtnContainer:hover, .addBtnContainer:focus {
+    transition: all .5s ease;
+    background-color: white;
+    cursor: pointer;
+}
+
+.addBtn:hover, .addBtn:focus {
+    transition: all .5s ease;
+    color: rgb(115, 255, 0);
+}
+
+.removeBtn {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 0, 85);
+    transition: all .5s ease;
+    border-radius: 6px;
+    padding: 5px;
+    height: 2.5rem;
+    width: 4.5rem;
+    top: 2rem;
+    color: white;
+    transition: all .5s ease;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.removeBtn:hover, .removeBtn:focus {
+    transition: all .5s ease;
+    background-color: white;
+    cursor: pointer;
+}
+
+.removeBtn:hover, .removeBtn:focus {
+    transition: all .5s ease;
+    color: rgb(255, 0, 85);
+}
+
+
+.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+    background-color: grey !important;
+}
+
+.disabled:hover, .disabled:focus {
+    transition: all .5s ease;
+    color: white(255, 0, 85);
+    background-color: grey !important;
+}

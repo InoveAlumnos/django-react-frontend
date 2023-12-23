@@ -2,12 +2,16 @@ import { api } from "./client"
 
 const controller = new AbortController();
 
-export const ComicsGetAPI = {
-  getAll: async function () {
+export const buyAPI = {
+  post: async function (cart, userData) {
     
     const response = await api.request({
-      url: `api/comics/list/`,
-      method: "GET",
+      url: `api/buy/`,
+      method: "POST",
+      data: {
+        cart: cart,
+        userData: userData
+      },
       signal: controller.signal
     })
     if(response) {

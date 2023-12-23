@@ -100,7 +100,7 @@
 
     .formsContainer {
         display: flex;
-        justify-content: start;
+        justify-content: flex-start;
         gap: 30px;
     }
 

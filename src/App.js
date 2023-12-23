@@ -11,8 +11,11 @@ import Profile from "./pages/profile";
 import Logout from "./pages/logout";
 import SignUpForm from "./pages/signUp";
 import Footer from "./components/footer/footer";
+import Cart from "./pages/cart";
 
 import { Toaster } from "react-hot-toast"
+
+import { CartContextProvider } from "./context/cartContext";
 
 function App() {
   const [auth, setAuth] = useState(true);
@@ -45,99 +48,111 @@ function App() {
 
 
   return (
-    <div className="App">
-      <HashRouter>
-        <Routes>
-          <Route
-            path="/"
-            component={ComicCards}
-            element={
-              auth ? 
-              <ComicCards auth={auth} />
-              :
-              <Navigate to="/login" />
-            }
-          ></Route>
-          <Route
-            path="/home"
-            component={ComicCards}
-            element={
-              auth ? 
-              <ComicCards auth={auth} />
-              :
-              <Navigate to="/login" />
-            }
-          ></Route>
-          <Route
-            path="/user"
-            component={Profile}
-            element={
-              auth ? (
-                <Profile
-                  userData={userData}
-                  userDataHook={(data) => setUserData(data)}
-                />
-              ) : (
+    <CartContextProvider>
+      <div className="App">
+        <HashRouter>
+          <Routes>
+            <Route
+              path="/"
+              component={ComicCards}
+              element={
+                auth ? 
+                <ComicCards auth={auth} />
+                :
                 <Navigate to="/login" />
-              )
-            }
-          ></Route>
-          <Route
-            path="/login"
-            component={LoginForm}
-            element={
-              auth ? (
-                <Navigate to="/home" />
-              ) : (
-                <LoginForm
-                  auth={auth}
-                  setAuthHook={(auth) => setAuth(auth)}
-                  userData={userData}
-                  userDataHook={(data) => setUserData(data)}
-                />
-              )
-            }
-          ></Route>
-          <Route
-            path="/logout"
-            component={Logout}
-            element={
-              auth ? (
-                <Logout auth={auth} setAuthHook={(auth) => setAuth(auth)} />
-              ) : (
-                <Navigate to="/home" />
-              )
-            }
-          ></Route>
-          <Route
-            path="/signup"
-            component={SignUpForm}
-            element={
-              auth ? (
-                <Navigate to="/home" />
-              ) : (
-                <SignUpForm
-                  auth={auth}
-                  setAuthHook={(auth) => setAuth(auth)}
-                  userData={userData}
-                  userDataHook={setUserData}
-                />
-              )
-            }
-          ></Route>
-        </Routes>
-        <div className="navbar-container">
-          <Navbar auth={auth} userData={userData}/>
-        </div>
-        <div className="footer-container">
-          <Footer />
-        </div>
-        <Toaster 
-        containerStyle={{
-          top: '90px'
-        }} />
-      </HashRouter>
-    </div>
+              }
+            ></Route>
+            <Route
+              path="/home"
+              component={ComicCards}
+              element={
+                auth ? 
+                <ComicCards auth={auth} />
+                :
+                <Navigate to="/login" />
+              }
+            ></Route>
+            <Route
+              path="/user"
+              component={Profile}
+              element={
+                auth ? (
+                  <Profile
+                    userData={userData}
+                    userDataHook={(data) => setUserData(data)}
+                  />
+                ) : (
+                  <Navigate to="/login" />
+                )
+              }
+            ></Route>
+            <Route
+              path="/login"
+              component={LoginForm}
+              element={
+                auth ? (
+                  <Navigate to="/home" />
+                ) : (
+                  <LoginForm
+                    auth={auth}
+                    setAuthHook={(auth) => setAuth(auth)}
+                    userData={userData}
+                    userDataHook={(data) => setUserData(data)}
+                  />
+                )
+              }
+            ></Route>
+            <Route
+              path="/logout"
+              component={Logout}
+              element={
+                auth ? (
+                  <Logout auth={auth} setAuthHook={(auth) => setAuth(auth)} />
+                ) : (
+                  <Navigate to="/home" />
+                )
+              }
+            ></Route>
+            <Route
+              path="/signup"
+              component={SignUpForm}
+              element={
+                auth ? (
+                  <Navigate to="/home" />
+                ) : (
+                  <SignUpForm
+                    auth={auth}
+                    setAuthHook={(auth) => setAuth(auth)}
+                    userData={userData}
+                    userDataHook={setUserData}
+                    />
+                    )
+                  }
+            ></Route>
+            <Route
+              path="/cart"
+              component={Cart}
+              element={
+                auth ? 
+                (<Cart userData={userData} />)
+                :
+                (<Navigate to="/login" />)
+              }
+            ></Route>
+          </Routes>
+          <div className="navbar-container">
+            <Navbar auth={auth} userData={userData}/>
+          </div>
+          <div className="footer-container">
+            <Footer />
+          </div>
+          <Toaster 
+          containerStyle={{
+            top: '90px'
+          }} />
+        </HashRouter>
+      </div>
+    </CartContextProvider>
   );
 }
 

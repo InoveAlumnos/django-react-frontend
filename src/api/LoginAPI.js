@@ -6,7 +6,7 @@ export const LoginAPI = {
   post: async function (username, password) {
     
     const response = await api.request({
-      url: `user/login/`,
+      url: `api/login/`,
       method: "POST",
       data: {
         username: username,

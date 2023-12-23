@@ -4,6 +4,7 @@ import home from "../../assets/img/home_logo.png";
 import logout from "../../assets/img/LogOut.png";
 import signup from "../../assets/img/signup_logo.png";
 import user from "../../assets/img/user_logo.png";
+import cart from "../../assets/img/cart_logo_off.png";
 // Importamos de React Router para manejar los links:
 import { NavLink } from "react-router-dom";
 
@@ -22,6 +23,7 @@ const Navbar = (props) => {
                 {button("/home", styles.home, home)}
                 {auth === true ? <span className ={styles.hiden}></span> : button("/signup", styles.signup, signup)}
                 {button("/user", styles.user, user)}
+                {userData && button("/cart", styles.cart, cart)}
                 {auth === false ? <span className ={styles.hiden}></span> : button("/logout", styles.logout, logout)}
             </div>
         </header>
