@@ -134,7 +134,7 @@ function App() {
               component={Cart}
               element={
                 auth ? 
-                (<Cart />)
+                (<Cart userData={userData} />)
                 :
                 (<Navigate to="/login" />)
               }

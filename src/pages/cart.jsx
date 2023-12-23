@@ -7,7 +7,7 @@ import { buyAPI } from "../api/buy";
 
 import React from 'react'
 
-const Cart = () => {
+const Cart = (props) => {
 
   const { cart, setCart } = useContext(CartContext)
 
@@ -17,7 +17,7 @@ const Cart = () => {
 
   const handleBuy = (e) => {
   
-    buyAPI.post(cart).then((data) => {
+    buyAPI.post(cart, props.userData).then((data) => {
       console.log(data);
       setCart([]);
   });
